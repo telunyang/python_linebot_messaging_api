@@ -79,7 +79,7 @@ ngrok http http://localhost:8080
 - 在 Webhook settings 下面的 Webhook URL 當中，編輯/填寫 `https://xxxx-xx-xxx-xxx-xx.ngrok-free.app/callback`，記得後面要加上 **/callback**，這邊會跟主程式相呼應。
 - 按下 Update 來儲存設定。
 - 開啟 Use webhook。
-![](https://i.imgur.com/hSf3fYO.png)
+![](https://i.imgur.com/D3gyZyU.png)
 
 
 # 啟動服務
@@ -90,7 +90,7 @@ ngrok http http://localhost:8080
 $ python app.py
 ```
 若執行無誤，則會出現以下結果:
-![](https://i.imgur.com/1qEgOkq.png)
+![](https://i.imgur.com/r0fY8M4.png)
 
 ## 2. 測試 Webhook
 回到剛才 Message API 的 Webhook 設定，按下 Verify，如果沒有錯誤，則會出現以下結果:
