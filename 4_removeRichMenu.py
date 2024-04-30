@@ -1,0 +1,29 @@
+# 網路請求工具
+import requests
+
+# 輸出排版工具
+from pprint import pprint
+
+# 自訂組態檔 (放置 LINE Bot 重要設定)
+from config import Config
+
+# LINE BOT 設定
+config = Config()
+
+# Rich Menu Id
+richMenuId = "richmenu-e0fef82f307d6507199056192da09143"
+
+# 設定 Rich Menu 用的網址
+url_remove_rich_menu = f'https://api.line.me/v2/bot/richmenu/{richMenuId}'
+
+# 請求標頭
+my_headers = {
+    'Authorization': f'Bearer {config["YOUR_CHANNEL_ACCESS_TOKEN"]}'
+}
+
+# 執行請求 (刪除 RichMenu)
+response = requests.delete(url = url_remove_rich_menu, headers = my_headers)
+
+# 輸出回應結果
+pprint(response.text)
+# '{}'
