@@ -139,7 +139,7 @@ $ python 3_setRichMenu.py
 ```python
 if __name__ == "__main__":
     app.run(
-		debug=True,    # 啟用除錯模式
+        debug=True,    # 啟用除錯模式
         host="0.0.0.0", # 設定 0.0.0.0 會對外開放
         port=5005       # 啟用 port 號
     )
@@ -159,9 +159,3 @@ if __name__ == "__main__":
 ```
 注意: 使用 ssl_context 設定前，一定要先確認是否同時有 **fullchain.pem** 與 **privkey.pem** 這兩個檔案。
 
-# 延伸議題
-- [Messaging API](https://developers.line.biz/en/docs/messaging-api/)
-  - [Send messages](https://developers.line.biz/en/docs/messaging-api/sending-messages/)
-    - [Message types](https://developers.line.biz/en/docs/messaging-api/message-types/)
-- [Messaging API reference](https://developers.line.biz/en/reference/messaging-api/)
-- [[LINE Bot SDK] 如何更新 Golang LINE Bot SDK v8 OpenAPI(Swagger)](https://techblog.lycorp.co.jp/zh-hant/migrate-linebot-go-sdk-to-v8-for-openapi)
