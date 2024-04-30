@@ -70,13 +70,13 @@ ngrok http http://localhost:8080
 ```
 
 ## 3. ngrok 啟動成功的畫面
-![](https://i.imgur.com/pczWMdG.png)
+![](https://i.imgur.com/V13yTIG.png)
 **注意: 要複製 _Forwarding_ 那一列後面的網址，例如
-`https://xxxx-xxxx-xxxx-x-xxxx-xxxx-xxxx-xxxx-xxxx.jp.ngrok.io`，之後 Webhook 設定會用到。**
+`https://xxxx-xx-xxx-xxx-xx.ngrok-free.app`，之後 Webhook 設定會用到。**
 
 ## 4. 回到 LINE Developers
 - 進入先前建立的 Channel。
-- 在 Webhook settings 下面的 Webhook URL 當中，編輯/填寫 `https://xxxx-xxxx-xxxx-x-xxxx-xxxx-xxxx-xxxx-xxxx.jp.ngrok.io/callback`，記得後面要加上 **/callback**，這邊會跟主程式相呼應。
+- 在 Webhook settings 下面的 Webhook URL 當中，編輯/填寫 `https://xxxx-xx-xxx-xxx-xx.ngrok-free.app/callback`，記得後面要加上 **/callback**，這邊會跟主程式相呼應。
 - 按下 Update 來儲存設定。
 - 開啟 Use webhook。
 ![](https://i.imgur.com/hSf3fYO.png)
