@@ -47,9 +47,9 @@ $ python app.py
 - 進入 [ngrok 首頁](https://ngrok.com/)。
 - 註冊一個帳號，或是使用 GitHub 或 Google 帳號來登入。
 - 進入儀表板頁面：
-![儀表板畫面](https://i.imgur.com/LM2mkth.png)
+![儀表板畫面](https://i.imgur.com/tWTxsyK.png)
 - 在儀表板上方，依作業系統來選擇下載 zip 檔，裡面是 ngrok 執行檔，並解壓縮到指定資料夾路徑：
-![Windows下載畫面](https://i.imgur.com/OXcNLKW.png)
+![Windows下載畫面](https://i.imgur.com/DtkrHbq.png)
 - 開啟/進入 Terminal，到解壓縮後的資料夾或專案目錄中，執行 ngrok 程式。
 - (Optional) 若在 MacOS 或 Linux 環境 ngrok 沒有執行權限：
   - 額外開啟 Terminal，到指定資料夾或專案目錄中，以 ngrok 執行檔為主。
