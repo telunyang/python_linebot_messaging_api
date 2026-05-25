@@ -6,17 +6,15 @@
 - [Building a bot](https://developers.line.biz/en/docs/messaging-api/building-bot/#set-up-bot-on-line-developers-console)
 - [Ngrok](https://ngrok.com/)
 
-# (Required) 設定 LINE BOT
-## 1. 設定流程
-1. 安裝套件: `pip install -r requirements.txt`
-2. 登入 [LINE Developers](https://developers.line.biz/console/profile)。
+# 設定 LINE BOT
+1. 登入 [LINE Developers](https://developers.line.biz/console/profile)。
   - 可以用自己的 LINE 帳號登入，沒有的話可以註冊一個。
-3. 新增 Provider (Create a new provider)，並輸入 Provider name。
-4. 新增該 Provider 下的 Channel，選擇 Create Messaging API channel。
-5. 之後依需求選擇、填寫基本資料，最後勾選頁面底下兩個「I have read agree to the ...」，按下 Create。
-6. 按下/選擇先前 Create 的 Channel。
-7. 到 Basic settings 標籤取得 `Channel secret`。
-8. 到 Messaging API 標籤：
+2. 新增 Provider (Create a new provider)，並輸入 Provider name。
+3. 新增該 Provider 下的 Channel，選擇 Create Messaging API channel。
+4. 之後依需求選擇、填寫基本資料，最後勾選頁面底下兩個「I have read agree to the ...」，按下 Create。
+5. 按下/選擇先前 Create 的 Channel。
+6. 到 Basic settings 標籤取得 `Channel secret`。
+7. 到 Messaging API 標籤：
   - 取得 `Channel access token` (long-lived)。
   - 將 `Channel secret` 和 `Channel access token` 複製貼上到專案資料夾裡面的 `config.py` 當中
   - ![](https://i.imgur.com/jiSR4k1.png)
@@ -30,14 +28,11 @@
     - 自動回應訊息 關閉
     - (回 LINE Developers 首頁，刷新畫面，檢視設定結果)
 
-## 2. 執行 LINE BOT 主程式
+# 安裝套件
 ```bash
-# 記得先安裝 sdk
-$ pip install line-bot-sdk
-```
-```bash
-# 未來依需求調整內容
-$ python app.py
+# 記得先安裝套件
+$ pip install -U nv
+$ uv pip install -r requirements.txt
 ```
 
 # 模擬 SSL 環境設定: ngrok

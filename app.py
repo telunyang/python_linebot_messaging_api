@@ -4,6 +4,13 @@ from flask import Flask, request, abort, send_from_directory
 # 網路請求工具
 import requests
 
+# 作業系統工具
+import os
+
+# 讀取 .env 檔案的模組
+import dotenv
+dotenv.load_dotenv(override=True)
+
 # line bot sdk python 模組
 from linebot.v3 import (
     WebhookHandler
@@ -32,15 +39,15 @@ from linebot.v3.webhooks import (
 # 實體化 flask 物件
 app = Flask(__name__)
 
-# 自訂組態檔 (放置 LINE Bot 重要設定。未來可以改用 .env 檔案，請參考: https://pypi.org/project/python-dotenv/)
+# 自訂組態檔
 from config import Config
 config = Config()
-configuration = Configuration(access_token=config['YOUR_CHANNEL_ACCESS_TOKEN'])
-handler = WebhookHandler(config['YOUR_CHANNEL_SECRET'])
+configuration = Configuration(access_token=os.getenv('CHANNEL_ACCESS_TOKEN'))
+handler = WebhookHandler(os.getenv('CHANNEL_SECRET'))
 
 # 貼上 ngrok 提供的網址
 # 參考連結: https://i.imgur.com/V13yTIG.png
-prefix_url = "https://87ff-66-234-246-87.ngrok-free.app"
+prefix_url = os.getenv('PREFIX_URL')
 
 
 
@@ -114,9 +121,10 @@ def handle_image_message(event):
 
         # 請求標頭
         my_headers = {
-            'Authorization': f'Bearer {config["YOUR_CHANNEL_ACCESS_TOKEN"]}',
+            'Authorization': f'Bearer {os.getenv("CHANNEL_ACCESS_TOKEN")}',
         }
 
+        # LINE Bot API 的內容 URL (可以用來下載使用者上傳的圖片、影片、音訊等檔案)
         url = f"https://api-data.line.me/v2/bot/message/{messageId}/content"
 
         # 執行請求 (新增 RichMenu)
@@ -126,12 +134,16 @@ def handle_image_message(event):
         with open(f"files/{messageId}.jpg", "wb") as file:
             file.write(response.content)
 
+        # 回覆文字
         replyText = f"已收到圖片：{messageId}.jpg"
 
         # 回覆一到多個文字內容 (最多 5 個)
         list_reply = [
             TextMessage(text=replyText),
-            ImageMessage(original_content_url=f"{prefix_url}/files/{messageId}.jpg", preview_image_url=f"{prefix_url}/files/{messageId}.jpg")
+            ImageMessage(
+                original_content_url=f"{prefix_url}/files/{messageId}.jpg", 
+                preview_image_url=f"{prefix_url}/files/{messageId}.jpg"
+            )
         ]
 
         # 將文字透過 LINE Bot 回覆給使用者
@@ -157,9 +169,10 @@ def handle_video_message(event):
 
         # 請求標頭
         my_headers = {
-            'Authorization': f'Bearer {config["YOUR_CHANNEL_ACCESS_TOKEN"]}',
+            'Authorization': f'Bearer {os.getenv("CHANNEL_ACCESS_TOKEN")}',
         }
 
+        # LINE Bot API 的內容 URL (可以用來下載使用者上傳的圖片、影片、音訊等檔案)
         url = f"https://api-data.line.me/v2/bot/message/{messageId}/content"
 
         # 執行請求 (新增 RichMenu)
@@ -169,12 +182,16 @@ def handle_video_message(event):
         with open(f"files/{messageId}.mp4", "wb") as file:
             file.write(response.content)
 
+
         replyText = f"已收到影片：{messageId}.mp4"
 
         # 回覆一到多個文字內容 (最多 5 個)
         list_reply = [
             TextMessage(text=replyText),
-            VideoMessage(original_content_url=f"{prefix_url}/files/{messageId}.mp4", preview_image_url=f"{prefix_url}/files/{messageId}.mp4")
+            VideoMessage(
+                original_content_url=f"{prefix_url}/files/{messageId}.mp4", 
+                preview_image_url=f"{prefix_url}/files/{messageId}.mp4"
+            )
         ]
 
         # 將文字透過 LINE Bot 回覆給使用者
@@ -200,18 +217,20 @@ def handle_audio_message(event):
 
         # 請求標頭
         my_headers = {
-            'Authorization': f'Bearer {config["YOUR_CHANNEL_ACCESS_TOKEN"]}',
+            'Authorization': f'Bearer {os.getenv("CHANNEL_ACCESS_TOKEN")}',
         }
 
+        # LINE Bot API 的內容 URL (可以用來下載使用者上傳的圖片、影片、音訊等檔案)
         url = f"https://api-data.line.me/v2/bot/message/{messageId}/content"
 
         # 執行請求 (新增 RichMenu)
         response = requests.get(url = url, headers = my_headers)
 
-        # 儲存影片 (response.content 是二進位制資料)
+        # 儲存音訊 (response.content 是二進位制資料)
         with open(f"files/{messageId}.m4a", "wb") as file:
             file.write(response.content)
 
+        # 回覆文字
         replyText = f"已收到音檔：{messageId}.m4a"
 
         # 回覆一到多個文字內容 (最多 5 個)
