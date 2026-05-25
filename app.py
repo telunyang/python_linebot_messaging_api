@@ -40,14 +40,12 @@ from linebot.v3.webhooks import (
 app = Flask(__name__)
 
 # 自訂組態檔
-from config import Config
-config = Config()
 configuration = Configuration(access_token=os.getenv('CHANNEL_ACCESS_TOKEN'))
 handler = WebhookHandler(os.getenv('CHANNEL_SECRET'))
 
 # 貼上 ngrok 提供的網址
 # 參考連結: https://i.imgur.com/V13yTIG.png
-prefix_url = os.getenv('PREFIX_URL')
+ngrok_url = os.getenv('NGROK_URL')
 
 
 
@@ -141,8 +139,8 @@ def handle_image_message(event):
         list_reply = [
             TextMessage(text=replyText),
             ImageMessage(
-                original_content_url=f"{prefix_url}/files/{messageId}.jpg", 
-                preview_image_url=f"{prefix_url}/files/{messageId}.jpg"
+                original_content_url=f"{ngrok_url}/files/{messageId}.jpg", 
+                preview_image_url=f"{ngrok_url}/files/{messageId}.jpg"
             )
         ]
 
@@ -189,8 +187,8 @@ def handle_video_message(event):
         list_reply = [
             TextMessage(text=replyText),
             VideoMessage(
-                original_content_url=f"{prefix_url}/files/{messageId}.mp4", 
-                preview_image_url=f"{prefix_url}/files/{messageId}.mp4"
+                original_content_url=f"{ngrok_url}/files/{messageId}.mp4", 
+                preview_image_url=f"{ngrok_url}/files/{messageId}.mp4"
             )
         ]
 
@@ -236,7 +234,7 @@ def handle_audio_message(event):
         # 回覆一到多個文字內容 (最多 5 個)
         list_reply = [
             TextMessage(text=replyText),
-            AudioMessage(original_content_url=f"{prefix_url}/files/{messageId}.m4a", duration=1000)
+            AudioMessage(original_content_url=f"{ngrok_url}/files/{messageId}.m4a", duration=1000)
         ]
 
         # 將文字透過 LINE Bot 回覆給使用者

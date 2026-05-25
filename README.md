@@ -16,8 +16,8 @@
 6. 到 Basic settings 標籤取得 `Channel secret`。
 7. 到 Messaging API 標籤：
   - 取得 `Channel access token` (long-lived)。
-  - 將 `Channel secret` 和 `Channel access token` 複製貼上到專案資料夾裡面的 `config.py` 當中
-  - ![](https://i.imgur.com/jiSR4k1.png)
+  - 將專案資料夾裡面的 `.env-sample` 複製一份，並重新命名為 `.env`。
+  - 將 `Channel secret` 和 `Channel access token` 複製貼上到專案資料夾裡面的 `.env` 當中
   - 設定 Webhook URL，並驗證 (verify) 是否請求成功 (success)。
     - **註: 若需要測試環境，可以選擇 ngrok 工具**
   - 開啟 webhook (Use webhook)。
@@ -66,8 +66,9 @@ ngrok http http://localhost:8080
 
 ## 3. ngrok 啟動成功的畫面
 ![](https://i.imgur.com/V13yTIG.png)
-**注意: 要複製 _Forwarding_ 那一列後面的網址，例如
+- **注意: 要複製 _Forwarding_ 那一列後面的網址，例如
 `https://xxxx-xx-xxx-xxx-xx.ngrok-free.app`，之後 Webhook 設定會用到。**
+- 將剛才複製的網址，放到 `env` 當中 `NGROK_URL` 的值，這樣在主程式當中就可以直接使用 `os.getenv("NGROK_URL")` 來取得 ngrok 的網址。
 
 ## 4. 回到 LINE Developers
 - 進入先前建立的 Channel。
